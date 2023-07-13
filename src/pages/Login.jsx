@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
@@ -6,9 +6,6 @@ import { Label } from "../ui/label";
 import { AiOutlineHome } from "react-icons/ai";
 import { useGlobalState } from "../Context";
 import auth from "../auth";
-import { useLocation } from "react-router-dom";
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from "react-toastify";
 // import auth from "./auth";
 
 function Login() {
@@ -16,7 +13,6 @@ function Login() {
   const [password, setPassword] = useState("");
   const [user, setUser] = useGlobalState("user");
   const [isLoggedIn, setIsLoggedIn] = useGlobalState("isLoggedIn");
-  const { state } = useLocation();
   const login = () => {
     const dataToPost = new FormData();
     dataToPost.set("username", email);
@@ -59,24 +55,8 @@ function Login() {
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => {
-    state === "redirected" ? toast.error("You are unauthorized") : "";
-  }, []);
-
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col min-w-screen justify-center">
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
       <div className="w-full lg:w-2/6 mx-auto lg:border lg:rounded-lg lg:shadow-lg lg:bg-white">
         <AiOutlineHome
           data-testid="home"
