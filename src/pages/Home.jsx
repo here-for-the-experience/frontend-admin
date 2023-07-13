@@ -79,6 +79,7 @@ const Home = () => {
       render: (approve, record) => {
         return (
           <button
+          className="hover:underline"
             onClick={() =>
               approval(localStorage.getItem("jwt"), record.vaccine_id)
             }
