@@ -4,12 +4,6 @@ import { Table } from "antd";
 import vaccineData from "../vaccineData";
 
 const Home = () => {
-  const userData = [
-    {
-      name: "John",
-      phone: "123",
-    },
-  ];
   const columns = [
     { title: "Vaccine Center", dataIndex: "center", Key: "center" },
     {
