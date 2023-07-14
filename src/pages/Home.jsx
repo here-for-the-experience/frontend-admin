@@ -12,7 +12,23 @@ const Home = () => {
         token: jwt,
         vaccination_id: id,
       })
-      .then((res) => console.log(res))
+      .then((res) =>
+        res.data.success === true
+          ? api
+              .post("/allvaccines", {
+                token: localStorage.getItem("jwt"),
+              })
+              .then((res) => {
+                setLoading(false);
+                setVaccineData(res.data);
+                console.log(res.data);
+              })
+              .catch((err) => {
+                console.log(err);
+                setLoading(false);
+              })
+          : ""
+      )
       .catch((err) => console.log(err));
   };
   useEffect(() => {
@@ -23,7 +39,6 @@ const Home = () => {
       .then((res) => {
         setLoading(false);
         setVaccineData(res.data);
-        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -79,9 +94,9 @@ const Home = () => {
       render: (approve, record) => {
         return (
           <button
-          className="hover:underline"
+            className="hover:underline bg-blue-500 rounded-sm text-white px-2 py-1"
             onClick={() =>
-              approval(localStorage.getItem("jwt"), record.vaccine_id)
+              approval(localStorage.getItem("jwt"), record.id)
             }
           >
             Approve
