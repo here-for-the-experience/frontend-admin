@@ -41,7 +41,7 @@ jobs:
       -
         name: Modify Deployment File
         run: |
-          sed -i 's/hfte-front-admin:.*/hfte-front-admin:${{ github.run_number }}/g' environments/dev/app-front-admin/deployment.yaml   # NEEDS CHANGES HERE
+          sed -i 's/hfte-front-admin:.*/hfte-front-admin:${{ github.run_number }}/g' environments/dev/app-frontend-admin/deployment.yaml   # NEEDS CHANGES HERE
 
       -
         name: Push changes of deployment
